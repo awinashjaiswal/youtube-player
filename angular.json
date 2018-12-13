@@ -143,6 +143,160 @@
           }
         }
       }
+    },
+    "youtube-player": {
+      "root": "projects/youtube-player",
+      "sourceRoot": "projects/youtube-player/src",
+      "projectType": "library",
+      "prefix": "ng6",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/youtube-player/tsconfig.lib.json",
+            "project": "projects/youtube-player/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/youtube-player/src/test.ts",
+            "tsConfig": "projects/youtube-player/tsconfig.spec.json",
+            "karmaConfig": "projects/youtube-player/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/youtube-player/tsconfig.lib.json",
+              "projects/youtube-player/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "player": {
+      "root": "projects/player/",
+      "sourceRoot": "projects/player/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/player",
+            "index": "projects/player/src/index.html",
+            "main": "projects/player/src/main.ts",
+            "polyfills": "projects/player/src/polyfills.ts",
+            "tsConfig": "projects/player/tsconfig.app.json",
+            "assets": [
+              "projects/player/src/favicon.ico",
+              "projects/player/src/assets"
+            ],
+            "styles": [
+              "projects/player/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/player/src/environments/environment.ts",
+                  "with": "projects/player/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "player:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "player:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "player:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/player/src/test.ts",
+            "polyfills": "projects/player/src/polyfills.ts",
+            "tsConfig": "projects/player/tsconfig.spec.json",
+            "karmaConfig": "projects/player/karma.conf.js",
+            "styles": [
+              "projects/player/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/player/src/favicon.ico",
+              "projects/player/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/player/tsconfig.app.json",
+              "projects/player/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "player-e2e": {
+      "root": "projects/player-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/player-e2e/protractor.conf.js",
+            "devServerTarget": "player:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "player:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/player-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "youtube"

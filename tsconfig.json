@@ -16,6 +16,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "youtube-player": [
+        "dist/youtube-player"
+      ],
+      "youtube-player/*": [
+        "dist/youtube-player/*"
+      ]
+    }
   }
 }
