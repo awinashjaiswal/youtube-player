@@ -21,9 +21,7 @@ Clone the directory in your local pc and open the command promt in the app folde
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Install module to your project
 
-`npm install youtube-player` 
 
 ## Use the code in your application
 
